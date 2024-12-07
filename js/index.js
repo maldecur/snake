@@ -127,17 +127,20 @@ function sendScore(nickname, score) {
 
 // Обновление таблицы лидеров
 function updateLeaderboard() {
-    fetch("https://maldecur.10001mb.com/get_leaderboard.php") // стояло get_leaderboard.php
-        .then(res => res.json())
-        .then(data => {
-            const leaderboard = document.getElementById("leaderboard");
-            leaderboard.innerHTML = "";
-            data.forEach(player => {
-                const li = document.createElement("li");
-                li.innerText = `${player.nickname}: ${player.score}`;
-                leaderboard.appendChild(li);
-            });
+    fetch("https://maldecur.10001mb.com/get_leaderboard.php")
+    .then(res => res.json())
+    .then(data => {
+        const leaderboard = document.getElementById("leaderboard");
+        leaderboard.innerHTML = "";
+        data.forEach(player => {
+            const li = document.createElement("li");
+            li.innerText = `${player.nickname}: ${player.score}`;
+            leaderboard.appendChild(li);
         });
+    })
+    .catch(error => {
+        console.error("Ошибка при получении данных:", error);
+    });
 }
 
 // Периодическое обновление таблицы
