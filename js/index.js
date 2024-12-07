@@ -118,7 +118,7 @@ function gameOver() {
 
 // Отправка очков
 function sendScore(nickname, score) {
-    fetch("save_score.php", {
+    fetch("http://maldecur.10001mb.com/save_score.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ nickname, score }),
@@ -127,7 +127,7 @@ function sendScore(nickname, score) {
 
 // Обновление таблицы лидеров
 function updateLeaderboard() {
-    fetch("get_leaderboard.php")
+    fetch("http://maldecur.10001mb.com/get_leaderboard.php") // стояло get_leaderboard.php
         .then(res => res.json())
         .then(data => {
             const leaderboard = document.getElementById("leaderboard");
